@@ -3,7 +3,9 @@ import PackageDescription
 let package = Package(
     name: "xplosionapi",
     dependencies: [
-        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 5)
+        .Package(url: "https://github.com/vapor/vapor.git", majorVersion: 1, minor: 5),
+        //Include package for db provider | Modified By: Todd Boone II
+        .Package(url: "https://github.com/vapor/postgresql-provider", majorVersion: 1, minor: 0)
     ],
     exclude: [
         "Config",
