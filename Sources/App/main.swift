@@ -2,12 +2,12 @@ import Vapor
 //Import database provider | Modified By: Todd Boone II
 import VaporPostgreSQL
 
-let drop = Droplet(
-    //Pass in provider | Modified By: Todd Boone II
-    providers: [VaporPostgreSQL.Provider.self]
-    
-)
+let drop = Droplet()
 
+//Add database provider | Modified By: Todd Boone II
+try drop.addProvider(VaporPostgreSQL.Provider.self)
+
+//GET route '/version' that returns database version | Modified By: Todd Boone II
 drop.get("version") { request in
     //use db property of droplet the droplet, which has the PostgreSQLDriver
     if let db = drop.database?.driver as? PostgreSQLDriver {
@@ -18,7 +18,7 @@ drop.get("version") { request in
     }
 }
 
-/* THIS IS FOR THE VAPOR 'It Works.' message.************************************************************
+//GET route '/' that returns the 'It works.' message | Modified By: Todd Boone II
 drop.get { req in
     return try drop.view.make("welcome", [
     	"message": drop.localization[req.lang, "welcome", "title"]
@@ -27,6 +27,5 @@ drop.get { req in
 
 
 drop.resource("posts", PostController())
-********************************************************************************************************/
 
 drop.run()
