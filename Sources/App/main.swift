@@ -25,7 +25,5 @@ drop.get { req in
     ])
 }
 
-
-drop.resource("posts", PostController())
-
+//run server
 drop.run()
