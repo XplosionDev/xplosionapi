@@ -48,7 +48,7 @@ drop.get("dbname") { request in
 
 //Create new coach --> Saves it to the database --> returns JSON
 drop.get("coach-insert") { request in
-    var coach = accounts_coach(city: "Fort Worth", state: "TX", user_id: 1)
+    var coach = accounts_coach(city: "Fort Worth", state: "TX", user_id: 13)
     try coach.save()
     return try JSON(node: accounts_coach.all().makeNode())
 }
