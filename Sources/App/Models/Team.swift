@@ -3,7 +3,7 @@ import Vapor
 //Create swift object class to store teams | Modified By: Todd Boone II
 //Make class conform to Model which has JSONReprentable protocol
 //The JSONRepresentable protocol allows node to JSON conversion
-final class accounts_team: Model {
+final class Team: Model {
     
     //add optional property to store unique id for this object
     var id: Node?
@@ -27,7 +27,7 @@ final class accounts_team: Model {
         self.state = state
         self.coach_id = coach_id
     }
-    
+ 
     
     //Initializer that creates model object from node that fluent created
     init(node: Node, in context: Context) throws {
@@ -49,13 +49,13 @@ final class accounts_team: Model {
             "city": city,
             "state": state,
             "coach_id": coach_id
-            ])
+        ])
     }
     
     //This method prepares the database | Modified By: Todd Boone II
     //***In other words: create table for first time
     static func prepare(_ database: Database) throws {
-        try database.create("accounts_teams") { users in
+        try database.create("accounts_team") { users in
             users.id()
             users.string("team_name")
             users.string("mascot")
@@ -69,7 +69,7 @@ final class accounts_team: Model {
     //***In other words: drop table
     //***only called if manually run command from command line
     static func revert(_ database: Database) throws {
-        try database.delete("accounts_teams")
+        try database.delete("accounts_team")
     }
     
 }
