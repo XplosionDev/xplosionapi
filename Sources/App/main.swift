@@ -38,8 +38,8 @@ drop.get("dbversion") { request in
 drop.get("currentdb") { request in
     //use db property of droplet the droplet, which has the PostgreSQLDriver
     if let db = drop.database?.driver as? PostgreSQLDriver {
-        let version = try db.raw("SELECT current_database()")
-        return try JSON(node: version)
+        let current = try db.raw("SELECT current_database()")
+        return try JSON(node: current)
     } else {
         return "No database connection."
     }
