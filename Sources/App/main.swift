@@ -14,7 +14,6 @@ drop.preparations += accounts_swing.self
 drop.preparations += accounts_team.self
  
 
-
 //RETURNS VAPOR WELCOME------------------------- | Modified By: Todd Boone II
 //GET route '/' that returns the 'It works.' message | Modified By: Todd Boone II
 drop.get { req in
@@ -44,8 +43,6 @@ drop.get("currentdb") { request in
         return "No database connection."
     }
 }
-
-
 
 //ROUTES FOR INSERTION OF MOCK DATA FOR TESTING------------- | Modified By: Todd Boone II
 //Create new coach with explicit data --> Saves it to the database --> returns JSON
@@ -78,32 +75,11 @@ drop.get("insert-team") { request in
 
 
 //CREATE------------------------------------------- | Modified By: Todd Boone II
-//Post route that creates new coach object in database    //NEED TO FIGURE OUT HOW TO USE THIS ROUTE
-drop.post("new-coach") { request in
-    var accountscoach = try accounts_coach(node: request.json)
-    try accountscoach.save()
-    return accountscoach
-}
-
-//Post route that creates new swing object in database    //NEED TO FIGURE OUT HOW TO USE THIS ROUTE
-drop.post("new-swing") { request in
-    var accountsswing = try accounts_swing(node: request.json)
-    try accountsswing.save()
-    return accountsswing
-}
-
 //Post route that creates new player object in database   //NEED TO FIGURE OUT HOW TO USE THIS ROUTE
 drop.post("new-player") { request in
     var accountsplayer = try accounts_player(node: request.json)
     try accountsplayer.save()
     return accountsplayer
-}
-
-//Post route that creates new team object in database    //NEED TO FIGURE OUT HOW TO USE THIS ROUTE
-drop.post("new-team") { request in
-    var accountsteam = try accounts_team(node: request.json)
-    try accountsteam.save()
-    return accountsteam
 }
 
 
