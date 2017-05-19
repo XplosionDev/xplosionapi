@@ -1,3 +1,13 @@
+// This file provides the following api endpoints:
+// http://localhost:8080/ | displays the vapor default It Works message
+// http://localhost:8080/dbversion | returns database version of app
+// http://localhost:8080/dbname | returns the name of the database being used
+// http://localhost:8080/coaches | returns coach data
+// http://localhost:8080/players | returns player data
+// http://localhost:8080/swings | returns swing data
+// http://localhost:8080/teams | returns teams data
+
+
 import Vapor
 //Import database provider | Modified By: Todd Boone II
 import VaporPostgreSQL
@@ -46,33 +56,20 @@ drop.get("dbname") { request in
 
 //INSERTION OF MOCK DATA FOR TESTING------------- | Modified By: Todd Boone II
 
-//Create new coach --> Saves it to the database --> returns JSON
-drop.get("coach-insert") { request in
-    var coach = accounts_coach(city: "Fort Worth", state: "TX", user_id: 13)
-    try coach.save()
-    return try JSON(node: accounts_coach.all().makeNode())
-}
-
 //Create new player --> Saves it to the database --> returns JSON
 drop.get("player-insert") { request in
-    var player = accounts_player(email: "myemail@email.com", username: "myusername", password: "mypassword", type: "independent", first_name: "John", last_name: "Smith", hometown: "Fort Worth", homestate: "TX", height_feet: "6ft", height_inches: "2in", weight: "185", batting_orientation: "right", position: "pitcher", player_number: 13, team_id: 1)
+    var player = accounts_player(email: "myemail@email.com", username: "myusername", password: "password", type: "independent", first_name: "Joe", last_name: "Bob", hometown: "Fort Worth", homestate: "TX", height_feet: "6ft", height_inches: "2in", weight: "185", batting_orientation: "right", position: "pitcher", player_number: 13, team_id: 1)
     try player.save()
     return try JSON(node: accounts_player.all().makeNode())
 }
 
 //Create new swing --> Saves it to the database --> returns JSON
 drop.get("swing-insert") { request in
-    var swing = accounts_swing(swing_name: "", start_rot_x: 0, end_rot_x: 0, start_rot_y: 0, end_rot_y: 0, start_rot_z: 0, end_rot_z: 0, start_pos_x: 0, end_pos_x: 0, start_pos_y: 0, end_pos_y: 0, start_pos_z: 0, end_pos_z: 0, speed: 0, player_id: 1)
+    var swing = accounts_swing(start_rot: 0, end_rot: 0, start_pos_x: 0, end_pos_x: 0, start_pos_y: 0, end_pos_y: 0, start_pos_z: 0, end_pos_z: 0, speed: 0, player_id: 1)
     try swing.save()
     return try JSON(node: accounts_swing.all().makeNode())
 }
 
-//Create new team --> Saves it to the database --> returns JSON
-drop.get("team-insert") { request in
-    var team = accounts_team(team_name: "Boswell", mascot: "Pioneers", city: "Fort Worth", state: "TX", coach_id: 1)
-    try team.save()
-    return try JSON(node: accounts_team.all().makeNode())
-}
 
 //CREATE------------------------------------------- | Modified By: Todd Boone II
 
@@ -107,6 +104,7 @@ drop.get("teams") { request in
 
 //UPDATE-------------------------------------------
 
+//
 
 
 //DELETE-------------------------------------------
